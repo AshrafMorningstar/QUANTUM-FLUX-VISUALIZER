@@ -1,0 +1,174 @@
+:root {
+  --quantum-primary: #00ffff;
+  --quantum-secondary: #ff00ff;
+  --quantum-accent: #ffff00;
+  --quantum-bg: #000000;
+  --quantum-surface: rgba(255, 255, 255, 0.05);
+  --quantum-glow: rgba(0, 255, 255, 0.5);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background: var(--quantum-bg);
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+.app-container {
+  position: relative;
+  min-height: 100vh;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.app-container.loaded {
+  opacity: 1;
+}
+
+.main-content {
+  position: relative;
+  z-index: 10;
+  padding: 2rem;
+}
+
+.quantum-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  animation: slideDown 1s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.quantum-title {
+  font-family: "Orbitron", monospace;
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 900;
+  margin-bottom: 1rem;
+  letter-spacing: 0.1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.quantum-glow {
+  color: var(--quantum-primary);
+  text-shadow: 0 0 10px var(--quantum-primary), 0 0 20px var(--quantum-primary),
+    0 0 30px var(--quantum-primary), 0 0 40px var(--quantum-primary);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.flux-text {
+  background: linear-gradient(
+    90deg,
+    var(--quantum-secondary),
+    var(--quantum-accent),
+    var(--quantum-primary)
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    text-shadow: 0 0 10px var(--quantum-primary),
+      0 0 20px var(--quantum-primary), 0 0 30px var(--quantum-primary);
+  }
+  50% {
+    text-shadow: 0 0 20px var(--quantum-primary),
+      0 0 30px var(--quantum-primary), 0 0 40px var(--quantum-primary),
+      0 0 50px var(--quantum-primary);
+  }
+}
+
+@keyframes shimmer {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.quantum-subtitle {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+.user-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--quantum-surface);
+  border: 1px solid var(--quantum-primary);
+  border-radius: 50px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px var(--quantum-glow);
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.badge-icon {
+  font-size: 1.5rem;
+}
+
+.badge-name {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 600;
+  color: var(--quantum-primary);
+}
+
+.visualization-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  animation: fadeIn 1.5s ease-out 0.5s both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 1024px) {
+  .visualization-grid {
+    grid-template-columns: 1fr;
+  }
+}
